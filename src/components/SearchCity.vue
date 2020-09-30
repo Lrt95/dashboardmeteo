@@ -1,7 +1,7 @@
 <template>
     <md-field>
       <label>Initial Value</label>
-      <md-input v-model="initial"></md-input>
+      <md-input v-model="initial" @keydown.enter="change()"></md-input>
     </md-field>
 </template>
 
@@ -10,7 +10,22 @@ export default {
   name: 'SearchCity',
   data: () => ({
     initial: 'Initial Value'
-  })
+  }),
+  computed: {
+    cCity: {
+      get () {
+        return this.$store.state.city
+      },
+      set (value) {
+        this.$store.commit('changeCity', value)
+      }
+    }
+  },
+  methods: {
+    change () {
+      this.cCity = this.initial
+    }
+  }
 }
 </script>
 
