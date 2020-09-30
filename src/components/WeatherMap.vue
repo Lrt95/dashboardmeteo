@@ -1,7 +1,5 @@
 <template>
   <b-container>
-    <SearchCity/>
-
     <b-card
       overlay
       title="test"
@@ -38,11 +36,9 @@
 </template>
 
 <script>
-import SearchCity from '@/components/SearchCity'
 
 export default {
   name: 'WeatherMap',
-  components: { SearchCity },
   data () {
     return {
       city: '',
