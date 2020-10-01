@@ -13,8 +13,6 @@ export default {
   name: 'Forecast',
   data () {
     return {
-      data: null,
-      city: null,
       temp: [],
       fields: [
         {
@@ -27,13 +25,7 @@ export default {
         }
 
       ],
-      temp2: null,
-      temp3: null,
-      temp4: null,
-      temp5: null,
-      temp_low: null,
-      temp_high: null,
-      items: [{ hour: '12h', temp: '30/10/2020' }]
+      items: []
     }
   },
   computed: {
@@ -57,7 +49,10 @@ export default {
     },
     getWeathersCity (city) {
       axios.get('http://api.openweathermap.org/data/2.5/forecast?q=' + city + '&units=metric&appid=70422f1efd33aacb1117a8f38ae1006b&lang=fr')
-        .then((response) => this.$store.commit('weatherForFiveDays', response.data))
+        .then((response) => {
+          this.$store.commit('listWeathers', response.data)
+          console.log(response.data)
+        })
     }
   },
   asyncComputed: {
