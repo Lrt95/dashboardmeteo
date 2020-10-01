@@ -3,6 +3,7 @@
     <SearchCity/>
     <WeatherMap v-bind:weatherCity="meteoData"/>
     <listWeatherCity/>
+    <LeafletMap/>
   </div>
 </template>
 
@@ -13,10 +14,12 @@ import SearchCity from '@/components/SearchCity'
 import WeatherMap from '@/components/WeatherMap'
 import ListWeatherCity from '../components/ListWeatherCity'
 import { token } from '@/main'
+import LeafletMap from '../components/LeafletMap'
 
 export default {
   name: 'Home',
   components: {
+    LeafletMap,
     ListWeatherCity,
     WeatherMap,
     SearchCity

@@ -13,6 +13,7 @@ import VueMoment from 'vue-moment'
 import AsyncComputed from 'vue-async-computed'
 import momentTimezone from 'moment-timezone'
 import VSwitch from 'v-switch-case'
+import 'leaflet/dist/leaflet.css'
 
 const moment = require('moment')
 require('moment/locale/fr')
