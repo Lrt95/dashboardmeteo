@@ -1,10 +1,8 @@
 <template>
   <div class="home">
     <SearchCity/>
-    <WeatherMap/>
-    <div>{{ meteoData }}</div>
-    <br/>
-    <div>{{ forecastData }}</div>
+    <WeatherMap v-bind:weatherCity="meteoData"/>
+    <listWeatherCity/>
   </div>
 </template>
 
@@ -13,10 +11,12 @@
 import axios from 'axios'
 import SearchCity from '@/components/SearchCity'
 import WeatherMap from '@/components/WeatherMap'
+import ListWeatherCity from '../components/ListWeatherCity'
 
 export default {
   name: 'Home',
   components: {
+    ListWeatherCity,
     WeatherMap,
     SearchCity
   },

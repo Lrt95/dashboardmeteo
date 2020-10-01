@@ -9,7 +9,7 @@
 export default {
   name: 'SearchCity',
   data: () => ({
-    initial: 'Initial Value'
+    initial: 'Paris'
   }),
   computed: {
     cCity: {

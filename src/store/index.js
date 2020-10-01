@@ -5,14 +5,19 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    city: ''
+    city: 'Paris',
+    citiesWeather: []
   },
   getters: {
-    city: state => state.city
+    city: state => state.city,
+    citiesWeather: state => state.citiesWeather
   },
   mutations: {
     changeCity (state, city) {
       state.city = city
+    },
+    listCities (state, citiesWeather) {
+      state.citiesWeather.push(citiesWeather)
     }
   },
   actions: {
