@@ -8,14 +8,13 @@
     >
     </b-pagination>
       <b-table :items="cWeatherForFiveDays" :fields="fields" :current-page="currentPage" :per-page="perPage"></b-table>
-      <h2>From forecast</h2>
-      <p>{{ cWeatherForFiveDays }}</p>
   </b-container>
 </template>
 
 <script>
 import axios from 'axios'
 import moment from 'moment'
+import { token } from '@/main'
 
 export default {
   name: 'Forecast',
@@ -61,12 +60,12 @@ export default {
     }
   },
   watch: {
+    cCity: function (val) {
+      this.getWeathersCity(val)
+    }
   },
   props: {
     weatherForFiveDays: Object
-  },
-  updated () {
-    this.getWeathersCity(this.cCity)
   },
   methods: {
     addWeather (dataWeather) {
@@ -85,7 +84,7 @@ export default {
       return tableWeather
     },
     getWeathersCity (city) {
-      axios.get('http://api.openweathermap.org/data/2.5/forecast?q=' + city + '&units=metric&appid=70422f1efd33aacb1117a8f38ae1006b&lang=fr')
+      axios.get('http://api.openweathermap.org/data/2.5/forecast?q=' + city + '&units=metric&appid=' + token + '&lang=fr')
         .then((response) => {
           this.$store.commit('listWeathers', this.addWeather(response.data))
         })

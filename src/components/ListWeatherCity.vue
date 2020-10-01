@@ -11,6 +11,7 @@
 <script>
 import axios from 'axios'
 import WeatherMap from './WeatherMap'
+import { token } from '@/main'
 
 export default {
   name: 'listWeatherCity',
@@ -33,13 +34,16 @@ export default {
   },
   methods: {
     getWeatherCity (city) {
-      axios.get('http://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=metric&appid=70422f1efd33aacb1117a8f38ae1006b&lang=fr').then((response) => this.$store.commit('listCities', response.data))
+      console.log(city)
+      axios.get('http://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=metric&appid=' + token + '&lang=fr').then((response) => this.$store.commit('listCities', response.data))
     }
   },
   mounted () {
-    this.cities.map(city => {
-      this.getWeatherCity(city)
-    })
+    console.log(this.cities.length)
+    console.log(this.$store.getters.citiesWeather.length)
+    if (this.cities.length > this.$store.getters.citiesWeather.length) {
+      this.cities.map(city => { this.getWeatherCity(city) })
+    }
   }
 }
 </script>

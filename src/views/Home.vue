@@ -12,6 +12,7 @@ import axios from 'axios'
 import SearchCity from '@/components/SearchCity'
 import WeatherMap from '@/components/WeatherMap'
 import ListWeatherCity from '../components/ListWeatherCity'
+import { token } from '@/main'
 
 export default {
   name: 'Home',
@@ -23,7 +24,7 @@ export default {
   asyncComputed: {
     meteoData: {
       get () {
-        return axios.get('http://api.openweathermap.org/data/2.5/weather?q=' + this.cCity + '&units=metric&appid=70422f1efd33aacb1117a8f38ae1006b&lang=fr').then((response) => response.data)
+        return axios.get('http://api.openweathermap.org/data/2.5/weather?q=' + this.cCity + '&units=metric&appid=' + token + '&lang=fr').then((response) => response.data)
       },
       default () {
         return 'Loading...'
@@ -31,7 +32,7 @@ export default {
     },
     forecastData: {
       get () {
-        return axios.get('http://api.openweathermap.org/data/2.5/forecast?q=' + this.cCity + '&units=metric&appid=70422f1efd33aacb1117a8f38ae1006b&lang=fr').then((response) => response.data)
+        return axios.get('http://api.openweathermap.org/data/2.5/forecast?q=' + this.cCity + '&units=metric&appid=' + token + '&lang=fr').then((response) => response.data)
       },
       default () {
         return 'Loading...'
