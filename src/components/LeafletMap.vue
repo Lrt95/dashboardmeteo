@@ -3,7 +3,9 @@
   <div>
     <l-map
       :zoom="zoom"
+      minZoom="3"
       :center="center"
+      worldCopyJump="true"
       style="height: 500px; width: 100%"
     >
       <l-tile-layer
@@ -45,7 +47,7 @@ export default {
   },
   data () {
     return {
-      zoom: 2,
+      zoom: 3,
       center: latLng(47.41322, -1.219482),
       url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
       attribution:

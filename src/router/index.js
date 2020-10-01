@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import WeatherDetails from '../views/WeatherDetails'
+import WeatherDetails from '../views/WeatherDetailsView'
 
 Vue.use(VueRouter)
 

@@ -1,19 +1,53 @@
 <template>
-  <div class="home">
-    <SearchCity/>
-    <WeatherMap v-bind:city="cCity"/>
-    <listWeatherCity/>
-    <LeafletMap/>
+  <div>
+    <div style="display: flex; flex-direction: row"; >
+      <md-card >
+        <md-ripple>
+          <md-card-header>
+            <div class="md-title">Météo Ville</div>
+            <div class="md-subhead">Choix de la ville</div>
+          </md-card-header>
+
+          <md-card-content>
+            <SearchCity/>
+            <WeatherMap v-bind:city="cCity"/>
+          </md-card-content>
+        </md-ripple>
+      </md-card>
+      <md-card >
+        <md-ripple>
+          <md-card-header>
+            <div class="md-title">Météo Monde</div>
+            <div class="md-subhead">Visualisation Dashboard</div>
+          </md-card-header>
+
+          <md-card-content>
+            <listWeatherCity/>
+          </md-card-content>
+        </md-ripple>
+      </md-card>
+    </div>
+    <md-card >
+      <md-ripple>
+        <md-card-header>
+          <div class="md-title">Météo Map</div>
+          <div class="md-subhead">Carte Mondiale</div>
+        </md-card-header>
+
+        <md-card-content>
+          <LeafletMap/>
+        </md-card-content>
+      </md-ripple>
+    </md-card>
   </div>
+
 </template>
 
 <script>
 
-import axios from 'axios'
 import SearchCity from '@/components/SearchCity'
-import WeatherMap from '@/components/WeatherMap'
+import WeatherMap from '@/components/WeatherCard'
 import ListWeatherCity from '../components/ListWeatherCity'
-import { token } from '@/main'
 import LeafletMap from '../components/LeafletMap'
 
 export default {
@@ -24,25 +58,6 @@ export default {
     WeatherMap,
     SearchCity
   },
-  asyncComputed: {
-    meteoData: {
-      get () {
-        return axios.get('http://api.openweathermap.org/data/2.5/weather?q=' + this.cCity + '&units=metric&appid=' + token + '&lang=fr').then((response) => response.data)
-      },
-      default () {
-        return 'Loading...'
-      }
-    },
-    forecastData: {
-      get () {
-        return axios.get('http://api.openweathermap.org/data/2.5/forecast?q=' + this.cCity + '&units=metric&appid=' + token + '&lang=fr').then((response) => response.data)
-      },
-      default () {
-        return 'Loading...'
-      }
-    }
-  },
-
   computed: {
     cCity: {
       get () {
@@ -52,3 +67,12 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.md-card {
+  margin: 4px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  vertical-align: top;
+}
+</style>

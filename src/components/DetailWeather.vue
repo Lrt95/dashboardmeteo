@@ -1,27 +1,26 @@
 <template>
   <b-container>
-     <b-pagination
+      <b-table :items="cWeatherForFiveDays" :fields="fields" :current-page="currentPage" :per-page="perPage">
+        <template v-slot:cell(icon)="icon">
+          <b-img :src="'http://openweathermap.org/img/wn/' + icon.value + '.png'"></b-img>
+        </template>
+      </b-table>
+    <b-pagination
       v-model="currentPage"
       :total-rows="rows"
       :per-page="perPage"
       aria-controls="my-table"
     >
     </b-pagination>
-      <b-table :items="cWeatherForFiveDays" :fields="fields" :current-page="currentPage" :per-page="perPage">
-        <template v-slot:cell(icon)="icon">
-          <b-img :src="'http://openweathermap.org/img/wn/' + icon.value + '.png'"></b-img>
-        </template>
-      </b-table>
   </b-container>
 </template>
-
 <script>
 import axios from 'axios'
 import moment from 'moment'
 import { token } from '@/main'
 
 export default {
-  name: 'Forecast',
+  name: 'DetailWeather',
   data () {
     return {
       perPage: 8,
@@ -76,9 +75,9 @@ export default {
       dataWeather.list.map(weather => {
         const objectWeather = {
           dt: moment(weather.dt * 1000).format('llll'),
-          temp: weather.main.temp,
+          temp: this.fomatCelcius(weather.main.temp),
           desc: weather.weather[0].description,
-          humidity: weather.main.humidity + '%',
+          humidity: this.formatPourcentage(weather.main.humidity),
           icon: weather.weather[0].icon
         }
         tableWeather.push(objectWeather)
@@ -91,8 +90,11 @@ export default {
           this.$store.commit('listWeathers', this.addWeather(response.data))
         })
     },
-    displayIcon (iconLink) {
-      return '<b-img:src="http://openweathermap.org/img/wn/' + iconLink + '.png">'
+    fomatCelcius: function (temp) {
+      return `${Math.round(temp)} °C`
+    },
+    formatPourcentage: function (pourcent) {
+      return `${pourcent} % `
     }
   },
   asyncComputed: {

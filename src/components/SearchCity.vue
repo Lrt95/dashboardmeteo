@@ -1,15 +1,21 @@
 <template>
-    <md-field>
-      <label>Initial Value</label>
-      <md-input v-model="initial" @keydown.enter="change()"></md-input>
-    </md-field>
+  <b-container>
+    <b-row>
+      <b-col>
+        <md-field style="width: 30%">
+          <label>Ville</label>
+          <md-input v-model="initial" @keydown.enter="change()"></md-input>
+        </md-field>
+      </b-col>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
 export default {
   name: 'SearchCity',
   data: () => ({
-    initial: 'Paris'
+    initial: ''
   }),
   computed: {
     cCity: {
