@@ -6,11 +6,13 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     city: 'Paris',
-    citiesWeather: []
+    citiesWeather: [],
+    weatherForFiveDays: []
   },
   getters: {
     city: state => state.city,
-    citiesWeather: state => state.citiesWeather
+    citiesWeather: state => state.citiesWeather,
+    weatherForFiveDays: state => state.weatherForFiveDays
   },
   mutations: {
     changeCity (state, city) {
@@ -18,6 +20,9 @@ export default new Vuex.Store({
     },
     listCities (state, citiesWeather) {
       state.citiesWeather.push(citiesWeather)
+    },
+    listWeathers (state, weatherForFiveDays) {
+      state.weatherForFiveDays = weatherForFiveDays
     }
   },
   actions: {

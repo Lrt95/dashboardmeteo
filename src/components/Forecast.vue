@@ -2,7 +2,7 @@
   <b-container>
       <b-table :items="items" :fields="fields"></b-table>
       <h2>From forecast</h2>
-      <p>{{forecastData}}</p>
+      <p>{{cWeatherForFiveDays}}</p>
   </b-container>
 </template>
 
@@ -45,25 +45,25 @@ export default {
   },
   watch: {
   },
+  props: {
+    weatherForFiveDays: Object
+  },
+  mounted () {
+    this.getWeathersCity(this.cCity)
+  },
   methods: {
     addWeather (temp) {
       // this.temp = forecastData.list[0].weather
     },
     getWeathersCity (city) {
       axios.get('http://api.openweathermap.org/data/2.5/forecast?q=' + city + '&units=metric&appid=70422f1efd33aacb1117a8f38ae1006b&lang=fr')
-        .then((response) => response.data)
+        .then((response) => this.$store.commit('weatherForFiveDays', response.data))
     }
   },
   asyncComputed: {
-    forecastData: {
+    cWeatherForFiveDays: {
       get () {
-        axios.get('http://api.openweathermap.org/data/2.5/forecast?q=' + this.cCity + '&units=metric&appid=70422f1efd33aacb1117a8f38ae1006b&lang=fr')
-          .then((response) => response.data /*  {
-            this.temp.push(response.data.list[0])
-            this.temp3 = response.data.list[2]
-            this.temp4 = response.data.list[3]
-            this.temp5 = response.data.list[4]
-          } */)
+        return this.$store.getters.weatherForFiveDays
       },
       default () {
         return 'Loading...'
