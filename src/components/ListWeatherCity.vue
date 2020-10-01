@@ -39,8 +39,6 @@ export default {
     }
   },
   mounted () {
-    console.log(this.cities.length)
-    console.log(this.$store.getters.citiesWeather.length)
     if (this.cities.length > this.$store.getters.citiesWeather.length) {
       this.cities.map(city => { this.getWeatherCity(city) })
     }

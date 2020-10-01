@@ -64,6 +64,9 @@ export default {
       this.getWeathersCity(val)
     }
   },
+  mounted () {
+    this.getWeathersCity(this.cCity)
+  },
   props: {
     weatherForFiveDays: Object
   },
