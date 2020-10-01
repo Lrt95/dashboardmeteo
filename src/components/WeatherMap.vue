@@ -32,6 +32,9 @@
              <b-icon-droplet-fill/>
            </div>
           </b-col>
+          <b-col sm="6">
+            <b-button>Details</b-button>
+          </b-col>
         </b-row>
       </b-card-text>
     </b-card>

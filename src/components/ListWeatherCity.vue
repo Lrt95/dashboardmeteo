@@ -1,5 +1,6 @@
 <template>
   <b-container>
+    <h1>Sélection de villes</h1>
     <b-row v-if="this.$store.getters.citiesWeather.length>0">
       <b-col sm="6" v-for="(weatherCity, index) in this.$store.getters.citiesWeather" v-bind:key="index">
         <WeatherMap v-bind:weather-city="weatherCity"/>

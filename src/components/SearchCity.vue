@@ -1,6 +1,6 @@
 <template>
     <md-field>
-      <label>Initial Value</label>
+      <label>Rechercher une ville</label>
       <md-input v-model="initial" @keydown.enter="change()"></md-input>
     </md-field>
 </template>
@@ -30,5 +30,7 @@ export default {
 </script>
 
 <style scoped>
-
+  .md-field:last-child{
+    margin-bottom: 40px;
+  }
 </style>
