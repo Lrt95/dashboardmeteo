@@ -7,7 +7,8 @@
       aria-controls="my-table"
     >
     </b-pagination>
-      <b-table :items="cWeatherForFiveDays" :fields="fields" :current-page="currentPage" :per-page="perPage"></b-table>
+      <b-table :items="cWeatherForFiveDays" :fields="fields" :current-page="currentPage" :per-page="perPage">
+      </b-table>
   </b-container>
 </template>
 
@@ -78,10 +79,9 @@ export default {
           dt: moment(weather.dt * 1000).format('llll'),
           temp: weather.main.temp,
           desc: weather.weather[0].description,
-          humidity: weather.main.humidity,
-          icon: weather.weather[0].icon
+          humidity: weather.main.humidity + '%',
+          icon: '<b-img src="http://openweathermap.org/img/wn/' + weather.weather[0].icon + '.png"></b-img>'
         }
-
         tableWeather.push(objectWeather)
       })
       return tableWeather
@@ -91,6 +91,9 @@ export default {
         .then((response) => {
           this.$store.commit('listWeathers', this.addWeather(response.data))
         })
+    },
+    displayIcon (iconLink) {
+      return '<b-img:src="http://openweathermap.org/img/wn/' + iconLink + '.png">'
     }
   },
   asyncComputed: {
