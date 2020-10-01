@@ -2,8 +2,8 @@
   <b-container>
     <b-card
       overlay
-      :title=weatherCity.name
-      :sub-title="weatherCity.dt + weatherCity.timezone|moment('timezone','Etc/UTC','LLLL')"
+      :title=cWeatherCity.name
+      :sub-title="cWeatherCity.dt + cWeatherCity.timezone|moment('timezone','Etc/UTC','LLLL ss')"
       text-variant="white"
       :img-src="require('../assets/image/un-ciel-sans-nuage.jpg')"
       img-alt="Image"
@@ -15,22 +15,25 @@
       <b-card-text style="height: 100%">
         <b-row class="text-center" style="height: 100%">
           <b-col sm="6" align-self="center">
-            <div>{{weatherCity.main.temp|celcius}}</div>
+            <div>{{cWeatherCity.main.temp|celcius}}</div>
           </b-col>
           <b-col sm="6" align-self="center">
-          <img :src="'http://openweathermap.org/img/wn/'+weatherCity.weather[0].icon+'.png'" />
+          <img :src="'http://openweathermap.org/img/wn/'+cWeatherCity.weather[0].icon+'.png'" />
           </b-col>
           <b-col>
-            <span>{{weatherCity.main.humidity|pourcentage}}</span>
-            <div v-if="weatherCity.main.humidity < lowHumidity">
+            <span>{{cWeatherCity.main.humidity|pourcentage}}</span>
+            <div v-if="cWeatherCity.main.humidity < lowHumidity">
               <b-icon-droplet/>
             </div>
-            <div v-else-if="weatherCity.main.humidity > lowHumidity && weatherCity.main.humidity < middleHumidity">
+            <div v-else-if="cWeatherCity.main.humidity > lowHumidity && cWeatherCity.main.humidity < middleHumidity">
               <b-icon-droplet-half/>
             </div>
            <div v-else>
              <b-icon-droplet-fill/>
            </div>
+          </b-col>
+          <b-col sm="12" align-self="left">
+            <b-button @click="clickButton"><b-icon-arrow-clockwise/></b-button>
           </b-col>
         </b-row>
       </b-card-text>
@@ -41,6 +44,9 @@
 
 <script>
 
+import axios from 'axios'
+import { token } from '../main'
+
 export default {
   name: 'WeatherMap',
   data () {
@@ -50,7 +56,7 @@ export default {
     }
   },
   props: {
-    weatherCity: Object
+    city: String
   },
   filters: {
     celcius: function (temp) {
@@ -60,15 +66,22 @@ export default {
       return `${pourcent} % `
     }
   },
-  methods: {
-    displayHumidity (humidity) {
-      if (humidity < 20) {
-        return '<b-icon-droplet/>'
-      } else if (humidity > 20 && humidity < 70) {
-        return '<b-icon-droplet-half/>'
-      } else {
-        return '<b-icon-droplet-fill/>'
+  asyncComputed: {
+    cWeatherCity: {
+      get () {
+        console.log('ahahahaha')
+        return this.getWeather()
       }
+    }
+  },
+  methods: {
+    clickButton () {
+      console.log(this.cWeatherCity)
+    },
+    getWeather () {
+      return axios.get('http://api.openweathermap.org/data/2.5/weather?q=' +
+        this.city + '&units=metric&appid=' +
+        token + '&lang=fr').then((response) => response.data)
     }
   }
 }

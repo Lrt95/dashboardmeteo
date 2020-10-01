@@ -1,8 +1,8 @@
 <template>
   <b-container>
-    <b-row v-if="this.$store.getters.citiesWeather.length>0">
-      <b-col sm="6" v-for="(weatherCity, index) in this.$store.getters.citiesWeather" v-bind:key="index">
-        <WeatherMap v-bind:weather-city="weatherCity"/>
+    <b-row>
+      <b-col sm="6" v-for="(city, index) in this.cities" v-bind:key="index">
+        <WeatherMap v-bind:city="city"/>
       </b-col>
     </b-row>
   </b-container>

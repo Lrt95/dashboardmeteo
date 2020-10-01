@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <SearchCity/>
-    <WeatherMap v-bind:weatherCity="meteoData"/>
+    <WeatherMap v-bind:city="cCity"/>
     <listWeatherCity/>
     <LeafletMap/>
   </div>
