@@ -3,7 +3,6 @@
     <SearchCity/>
     <WeatherMap v-bind:weatherCity="meteoData"/>
     <listWeatherCity/>
-    <Forecast/>
   </div>
 </template>
 
@@ -13,7 +12,6 @@ import axios from 'axios'
 import SearchCity from '@/components/SearchCity'
 import WeatherMap from '@/components/WeatherMap'
 import ListWeatherCity from '../components/ListWeatherCity'
-import Forecast from '@/components/Forecast'
 import { token } from '@/main'
 
 export default {
@@ -21,8 +19,7 @@ export default {
   components: {
     ListWeatherCity,
     WeatherMap,
-    SearchCity,
-    Forecast
+    SearchCity
   },
   asyncComputed: {
     meteoData: {

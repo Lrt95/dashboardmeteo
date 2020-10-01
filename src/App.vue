@@ -21,12 +21,18 @@
 
         <md-list>
 
-<!--          <router-link :to="{name:'Fruits'}">-->
-<!--            <md-list-item>-->
-<!--              <md-icon>fastfood</md-icon>-->
-<!--              <span class="md-list-item-text">Fruits</span>-->
-<!--            </md-list-item>-->
-<!--          </router-link>-->
+          <router-link :to="{name:'Home'}">
+            <md-list-item>
+              <md-icon>fastfood</md-icon>
+              <span class="md-list-item-text">Home</span>
+            </md-list-item>
+          </router-link>
+          <router-link :to="{name:'WeatherDetails', params: {id: this.cCity}}">
+            <md-list-item>
+              <md-icon>fastfood</md-icon>
+              <span class="md-list-item-text">Details</span>
+            </md-list-item>
+          </router-link>
 
         </md-list>
       </md-app-drawer>
@@ -47,6 +53,13 @@ export default {
   methods: {
     toggleMenu () {
       this.menuVisible = !this.menuVisible
+    }
+  },
+  computed: {
+    cCity: {
+      get () {
+        return this.$store.state.city
+      }
     }
   }
 }
