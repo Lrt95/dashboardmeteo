@@ -17,6 +17,8 @@ import VSwitch from 'v-switch-case'
 const moment = require('moment')
 require('moment/locale/fr')
 
+export const token = 'f62193be91659d628930ed32c11252d9'
+
 Vue.config.productionTip = false
 Vue.use(VueMaterial)
 Vue.use(BootstrapVue)
