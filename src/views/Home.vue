@@ -4,6 +4,7 @@
     <WeatherMap/>
     <div>{{ meteoData }}</div>
     <br/>
+    <Forecast />
     <div>{{ forecastData }}</div>
   </div>
 </template>
@@ -13,12 +14,14 @@
 import axios from 'axios'
 import SearchCity from '@/components/SearchCity'
 import WeatherMap from '@/components/WeatherMap'
+import Forecast from '@/components/Forecast'
 
 export default {
   name: 'Home',
   components: {
     WeatherMap,
-    SearchCity
+    SearchCity,
+    Forecast
   },
   asyncComputed: {
     meteoData: {
