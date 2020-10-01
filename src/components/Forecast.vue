@@ -8,6 +8,9 @@
     >
     </b-pagination>
       <b-table :items="cWeatherForFiveDays" :fields="fields" :current-page="currentPage" :per-page="perPage">
+        <template v-slot:cell(icon)="icon">
+          <b-img :src="'http://openweathermap.org/img/wn/' + icon.value + '.png'"></b-img>
+        </template>
       </b-table>
   </b-container>
 </template>
@@ -34,16 +37,12 @@ export default {
           label: 'Temperature'
         },
         {
-          key: 'desc',
-          label: 'Temps'
-        },
-        {
           key: 'humidity',
           label: 'Humidité'
         },
         {
           key: 'icon',
-          label: 'Icone'
+          label: 'Temps'
         }
 
       ],
@@ -80,7 +79,7 @@ export default {
           temp: weather.main.temp,
           desc: weather.weather[0].description,
           humidity: weather.main.humidity + '%',
-          icon: '<b-img src="http://openweathermap.org/img/wn/' + weather.weather[0].icon + '.png"></b-img>'
+          icon: weather.weather[0].icon
         }
         tableWeather.push(objectWeather)
       })
