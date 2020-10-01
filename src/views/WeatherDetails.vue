@@ -3,7 +3,6 @@
     <Forecast/>
   </div>
 </template>
-
 <script>
 import Forecast from '../components/Forecast'
 export default {

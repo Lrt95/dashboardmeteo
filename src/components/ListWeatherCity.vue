@@ -25,6 +25,7 @@ export default {
   asyncComputed: {
     cCitiesWeather: {
       get () {
+        console.log(this.$store.getters.citiesWeather)
         return this.$store.getters.citiesWeather
       },
       default () {

@@ -54,7 +54,7 @@ export default {
   },
   filters: {
     celcius: function (temp) {
-      return `${temp} °C`
+      return `${Math.round(temp)} °C`
     },
     pourcentage: function (pourcent) {
       return `${pourcent} % `
