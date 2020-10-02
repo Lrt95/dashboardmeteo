@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Weather from '../views/Weather.vue'
 import WeatherDetails from '../views/WeatherDetailsView'
 
 Vue.use(VueRouter)
@@ -13,8 +13,8 @@ const routes = [
   },
   {
     path: '*',
-    name: 'Home',
-    component: Home
+    name: 'Weather',
+    component: Weather
   }
 ]
 

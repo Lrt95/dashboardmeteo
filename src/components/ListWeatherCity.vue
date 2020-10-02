@@ -1,7 +1,6 @@
 <template>
   <b-container>
       <b-carousel
-        id="carousel-1"
         v-model="slide"
         :interval="4000"
         controls
@@ -29,14 +28,16 @@ export default {
   components: { WeatherMap },
   data () {
     return {
-      cities: ['Paris', 'Londres', 'New York', 'Tokyo', 'Moscou', 'Dubaï'],
+      cities: ['Paris', 'Londres', 'New York', 'Tokyo', 'Moscou', 'Dubaï', 'Miami', 'Pekin', 'Maroc', 'Afrique du Sud',
+        'Los Angeles', 'Brésil'],
       slide: 0,
       sliding: null
     }
   },
   methods: {
     getWeatherCity (city) {
-      axios.get('http://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=metric&appid=' + token + '&lang=fr').then((response) => this.$store.commit('listCities', response.data))
+      axios.get('http://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=metric&appid=' + token + '&lang=fr')
+        .then((response) => this.$store.commit('listCities', response.data))
     },
     onSlideStart (slide) {
       this.sliding = true
@@ -53,6 +54,6 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 </style>

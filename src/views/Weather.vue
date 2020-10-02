@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div style="display: flex; flex-direction: row"; >
+  <div style="display: flex; flex-direction: row; height: 100%;" >
+    <div style="display: flex; flex-direction: column; width: 30%; min-width: 30%;">
       <md-card >
         <md-ripple>
           <md-card-header>
@@ -27,18 +27,20 @@
         </md-ripple>
       </md-card>
     </div>
-    <md-card >
-      <md-ripple>
-        <md-card-header>
-          <div class="md-title">Météo Map</div>
-          <div class="md-subhead">Carte Mondiale</div>
-        </md-card-header>
+    <div style="width: 70%">
+      <md-card>
+        <md-ripple>
+          <md-card-header>
+            <div class="md-title">Météo Map</div>
+            <div class="md-subhead">Carte Mondiale</div>
+          </md-card-header>
 
-        <md-card-content>
-          <LeafletMap/>
-        </md-card-content>
-      </md-ripple>
-    </md-card>
+          <md-card-content>
+            <LeafletMap/>
+          </md-card-content>
+        </md-ripple>
+      </md-card>
+    </div>
   </div>
 
 </template>
@@ -51,7 +53,7 @@ import ListWeatherCity from '../components/ListWeatherCity'
 import LeafletMap from '../components/LeafletMap'
 
 export default {
-  name: 'Home',
+  name: 'Weather',
   components: {
     LeafletMap,
     ListWeatherCity,
@@ -70,9 +72,7 @@ export default {
 
 <style lang="scss" scoped>
 .md-card {
-  margin: 4px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin: 20px 4px;
   vertical-align: top;
 }
 </style>

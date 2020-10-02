@@ -1,6 +1,10 @@
 <template>
   <b-container>
-      <b-table :items="cWeatherForFiveDays" :fields="fields" :current-page="currentPage" :per-page="perPage">
+      <b-table :items="cWeatherForFiveDays"
+               :fields="fields"
+               :current-page="currentPage"
+               :per-page="perPage"
+               fixed="fixed">
         <template v-slot:cell(icon)="icon">
           <b-img :src="'http://openweathermap.org/img/wn/' + icon.value + '.png'"></b-img>
         </template>

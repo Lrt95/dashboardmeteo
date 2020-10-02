@@ -21,10 +21,10 @@
 
         <md-list>
 
-          <router-link :to="{name:'Home'}">
+          <router-link :to="{name:'Weather'}">
             <md-list-item>
               <md-icon>wb_sunny</md-icon>
-              <span class="md-list-item-text">Home</span>
+              <span class="md-list-item-text">Méteo</span>
             </md-list-item>
           </router-link>
           <router-link :to="{name:'WeatherDetails', params: {id: this.cCity}}">

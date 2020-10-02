@@ -1,45 +1,44 @@
 <template>
-  <b-container>
+  <b-container class="container-weather-card">
     <b-row>
       <b-col>
         <b-card
+          class="card-weather"
           :title=cWeatherCity.name
-          title-tag="h1"
+          title-tag="h3"
           :sub-title="cWeatherCity.dt + cWeatherCity.timezone|moment('timezone','Etc/UTC','LLLL')"
-          sub-title-tag="h3"
+          sub-title-tag="h4"
           text-variant="white"
           img-alt="Image"
           img-top
           tag="article"
-          class="mb-2"
         >
           <b-card-text>
             <b-container>
               <b-row class="text-center">
-                <b-col xl="6" style="height: 150px" class="ju">
-                  <div style="height: 100%; display: flex; align-items: center; justify-content: center;">
-                    <span style="font-size: 100px">{{ cWeatherCity.main.temp|celcius }}</span>
+                <b-col xl="6" class="col-element-wheather">
+                  <div class="element-weather">
+                    <span>{{ cWeatherCity.main.temp|celcius }}</span>
                   </div>
                 </b-col>
-                <b-col xl="6" style="height: 150px">
-                  <div style="height: 100%; display: flex; align-items: center; justify-content: center;">
-                    <img :src="'http://openweathermap.org/img/wn/'+cWeatherCity.weather[0].icon+'.png'"
-                         style="height: 200px"/>
+                <b-col xl="6" class="col-element-wheather">
+                  <div class="element-weather">
+                    <img :src="'http://openweathermap.org/img/wn/'+cWeatherCity.weather[0].icon+'.png'"/>
                   </div>
                 </b-col>
-                <b-col style="height: 150px">
-                  <div style="height: 100%; display: flex; align-items: center; justify-content: center;">
+                <b-col class="col-element-wheather">
+                  <div class="element-weather">
                     <span v-if="cWeatherCity.main.humidity < lowHumidity" >
-                      <b-icon-droplet style="width: 80px; height: 80px"/>
+                      <b-icon-droplet class="icon-bootstrap"/>
                     </span>
                     <span
                       v-else-if="cWeatherCity.main.humidity > lowHumidity && cWeatherCity.main.humidity < middleHumidity">
-                      <b-icon-droplet-half style="width: 80px; height: 80px"/>
+                      <b-icon-droplet-half class="icon-bootstrap"/>
                     </span>
                     <span v-else>
-                      <b-icon-droplet-fill style="width: 80px; height: 80px"/>
+                      <b-icon-droplet-fill class="icon-bootstrap"/>
                     </span>
-                    <span style="font-size: 100px">{{ cWeatherCity.main.humidity |pourcentage }}</span>
+                    <span>{{ cWeatherCity.main.humidity |pourcentage }}</span>
                   </div>
                 </b-col>
               </b-row>
@@ -65,7 +64,7 @@
 <script>
 
 import axios from 'axios'
-import { token } from '../main'
+import { token } from '@/main'
 
 export default {
   name: 'WeatherMap',
@@ -107,14 +106,40 @@ export default {
 }
 </script>
 
-<style scoped>
-.card {
+<style lang="scss" scoped>
+
+.card-weather {
   background: url('../assets/image/un-ciel-sans-nuage.jpg');
   background-size: cover;
   height: 100%;
 }
 
-.container {
+.container-weather-card {
+  height: 100%;
   width: 100%;
+}
+
+.col-element-wheather {
+  height: 50px
+}
+
+.element-weather {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-bootstrap {
+  width: 25px;
+  height: 25px;
+}
+
+img{
+  width: 100px;
+}
+
+span{
+  font-size: 25px;
 }
 </style>
