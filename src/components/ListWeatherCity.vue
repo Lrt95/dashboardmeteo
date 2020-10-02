@@ -28,7 +28,7 @@ export default {
   components: { WeatherMap },
   data () {
     return {
-      cities: ['Paris', 'Londres', 'New York', 'Tokyo', 'Moscou', 'Dubaï', 'Miami', 'Pekin', 'Maroc', 'Afrique du Sud',
+      cities: ['Paris', 'New York', 'Tokyo', 'Moscou', 'Dubaï', 'Miami', 'Pekin', 'Maroc', 'Afrique du Sud',
         'Los Angeles', 'Brésil'],
       slide: 0,
       sliding: null
