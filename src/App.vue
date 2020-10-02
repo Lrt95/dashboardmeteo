@@ -5,7 +5,7 @@
         <md-button class="md-icon-button" @click="toggleMenu" v-if="!menuVisible">
           <md-icon>menu</md-icon>
         </md-button>
-        <span class="md-title">Projet Vue</span>
+        <span class="md-title">DashBoard Météo</span>
       </md-app-toolbar>
 
       <md-app-drawer :md-active.sync="menuVisible" md-persistent="full">
@@ -21,15 +21,15 @@
 
         <md-list>
 
-          <router-link :to="{name:'Home'}">
+          <router-link :to="{name:'Weather'}">
             <md-list-item>
-              <md-icon>fastfood</md-icon>
-              <span class="md-list-item-text">Home</span>
+              <md-icon>wb_sunny</md-icon>
+              <span class="md-list-item-text">Méteo</span>
             </md-list-item>
           </router-link>
           <router-link :to="{name:'WeatherDetails', params: {id: this.cCity}}">
             <md-list-item>
-              <md-icon>fastfood</md-icon>
+              <md-icon>format_list_bulleted</md-icon>
               <span class="md-list-item-text">Details</span>
             </md-list-item>
           </router-link>

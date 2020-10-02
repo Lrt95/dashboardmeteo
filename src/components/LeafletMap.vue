@@ -1,16 +1,17 @@
 <template>
-  <b-jumbotron>
+  <b-jumbotron class="jumbotron-map">
   <div>
     <l-map
       :zoom="zoom"
+      minZoom="3"
       :center="center"
-      style="height: 500px; width: 100%"
+      worldCopyJump="true"
+      style="height: 76vh; width: 100%"
     >
       <l-tile-layer
         :url="url"
         :attribution="attribution"
       />
-      <!-- Use default icon -->
 <div v-for="(weatherCity, index) in this.$store.getters.citiesWeather" v-bind:key="index">
   <l-marker :lat-lng="[weatherCity.coord.lat, weatherCity.coord.lon]">
     <l-icon
@@ -45,11 +46,9 @@ export default {
   },
   data () {
     return {
-      zoom: 2,
+      zoom: 3,
       center: latLng(47.41322, -1.219482),
-      url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-      attribution:
-          '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+      url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
     }
   },
   asyncComputed: {
@@ -79,6 +78,13 @@ export default {
     text-align: center;
     width: auto !important;
     height: auto !important;
+    margin: 0 !important;
+  }
+
+  .jumbotron-map {
+    height: 100% !important;
+    padding: 0 !important;
+    background-color: transparent !important;
     margin: 0 !important;
   }
 </style>

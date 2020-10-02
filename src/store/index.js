@@ -24,7 +24,6 @@ export default new Vuex.Store({
       state.city = city
     },
     listCities (state, citiesWeather) {
-      console.log('tata')
       state.citiesWeather.push(citiesWeather)
     },
     listWeathers (state, weatherForFiveDays) {
