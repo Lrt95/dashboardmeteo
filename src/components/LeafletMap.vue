@@ -3,14 +3,13 @@
   <div>
     <l-map
       :zoom="zoom"
-      minZoom="3"
+      :minZoom="minZoom"
       :center="center"
-      worldCopyJump="true"
+      :worldCopyJump="worldCopyJump"
       style="height: 76vh; width: 100%"
     >
       <l-tile-layer
         :url="url"
-        :attribution="attribution"
       />
 <div v-for="(weatherCity, index) in this.$store.getters.citiesWeather" v-bind:key="index">
   <l-marker :lat-lng="[weatherCity.coord.lat, weatherCity.coord.lon]">
@@ -46,6 +45,8 @@ export default {
   },
   data () {
     return {
+      worldCopyJump: true,
+      minZoom: 3,
       zoom: 3,
       center: latLng(47.41322, -1.219482),
       url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'

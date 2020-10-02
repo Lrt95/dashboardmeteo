@@ -107,7 +107,7 @@ export default {
         return this.$store.getters.weatherForFiveDays
       },
       default () {
-        return 'Loading...'
+        return []
       }
     }
   }

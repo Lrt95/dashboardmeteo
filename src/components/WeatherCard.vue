@@ -1,6 +1,6 @@
 <template>
   <b-container class="container-weather-card">
-    <b-row>
+    <b-row v-if="Object.entries(cWeatherCity).length > 0">
       <b-col>
         <b-card
           class="card-weather"
@@ -86,10 +86,18 @@ export default {
       return `${pourcent}%`
     }
   },
+  watch: {
+    cWeatherCity: function () {
+      this.refresh()
+    }
+  },
   asyncComputed: {
     cWeatherCity: {
       get () {
         return this.getWeather()
+      },
+      default () {
+        return []
       }
     }
   },
